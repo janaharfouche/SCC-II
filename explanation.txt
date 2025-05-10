@@ -1,0 +1,14 @@
+---
+## Explanation: How Visibility Timeout and DLQ are important 
+
+When a message is picked up from the SQS queue by the Lambda function, it becomes temporarily hidden using "visibility timeout". This prevents duplicate processing.
+
+If Lambda fails, the message becomes visible again and can be retried.
+
+I also configured a DLQ (Dead-Letter Queue) to catch any message that failed 3 times. 
+
+This helped me test error-handling and debug issues safely.
+
+DLQ gave me visibility into failed messages instead of silently losing them.
+
+Both features made my system more reliable and easier to troubleshoot during testing.
